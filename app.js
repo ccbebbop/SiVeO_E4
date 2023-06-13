@@ -30,9 +30,9 @@ app.get('/clientes',(req,res)=>{
     res.render('clientes');
 })
 
-//app.get('/categorias',(req,res)=>{
-//    res.render('categorias');
-//})
+app.get('/categorias',(req,res)=>{
+    res.render('categorias');
+})
 
 app.get('/ventas',(req,res)=>{
     res.render('ventas');

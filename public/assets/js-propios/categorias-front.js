@@ -33,24 +33,25 @@ function crearCategoria(){
 }
 
 function getCategorias(){
+  alert("hola")
     $.ajax({
         method:"GET",// metodo
-        url: window.location.origin+"/categorias", //params (pero este no usara)
+        url: window.location.origin+"/api/categorias", //params (pero este no usara)
         data: {  }, //Body
         success: function( result ) {
+          alert("HOla")
          if(result.estado==1){
             const categorias = result.categorias 
             let tabla = $('#tabla-categorias').DataTable();
             categorias.forEach(categoria => {
               let Botones = generarBotones(categoria.id);
-              let nuevoRenglon = tabla.row.add([categoria.descripcion,Botones]).node()
+              let nuevoRenglon = tabla.row.add([categoria.id, categoria.Descripcion, Botones]).node()
               //-----------linea Agregada para el ID del renglon-----------
               $(nuevoRenglon).attr('id','renglon_'+categoria.id)
               //------------------------------------------------------------
-              $(nuevoRenglon).find('td').addClass('table-td');
+              //$(nuevoRenglon).find('td').addClass('table-td');
               tabla.draw( false );
             });
-
          }else{
             alert(result.mensaje)
          }
@@ -61,7 +62,7 @@ function getCategorias(){
 function borrarCategoria(){
   $.ajax({
     method:"DELETE",
-    url: window.location.origin+"/categorias/"+idSeleccionadoParaEliminar,
+    url: window.location.origin+"/api/categorias/"+idSeleccionadoParaEliminar,
     data: {},
     success: function( result ) {
      if(result.estado==1){
@@ -93,7 +94,7 @@ function identificaActualizar(id){
   //debemos de obtener los datos de la base de datos y mostrar en la ventana
   $.ajax({
     method:"GET",
-    url: window.location.origin+"/categorias/"+idSeleccionadoParaActualizar,
+    url: window.location.origin+"/api/categorias/"+idSeleccionadoParaActualizar,
     data: {  },
     success: function( result ) {
       if(result.estado==1){
@@ -118,7 +119,7 @@ function actualizarCategoria(){
   let descripcionCategoria = document.getElementById('descripcionCategoriaActualizar').value;
   $.ajax({
     method: "PUT",
-    url: window.location.origin +"/categorias/"+idSeleccionadoParaActualizar, //params
+    url: window.location.origin +"/api/categorias/"+idSeleccionadoParaActualizar, //params
     data: {//body
       descripcion:descripcionCategoria
     }, 
