@@ -33,13 +33,11 @@ function crearCategoria(){
 }
 
 function getCategorias(){
-  alert("hola")
     $.ajax({
         method:"GET",// metodo
         url: window.location.origin+"/api/categorias", //params (pero este no usara)
         data: {  }, //Body
         success: function( result ) {
-          alert("HOla")
          if(result.estado==1){
             const categorias = result.categorias 
             let tabla = $('#tabla-categorias').DataTable();

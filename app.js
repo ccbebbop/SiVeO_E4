@@ -6,6 +6,7 @@ const cors = require('cors');
 const app = express();
 
 const rutaCategorias = require('./src/routes/categorias-routes-api');
+const rutaProveedores = require('./src/routes/proveedores-routes-api');
 
 app.set('view engine', 'hbs');
 hbs. registerPartials(__dirname + '/views/partials',()=>{});
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use(rutaCategorias);
+app.use(rutaProveedores);
 
 app.get('/',(req,res)=>{
     res.render('login');
