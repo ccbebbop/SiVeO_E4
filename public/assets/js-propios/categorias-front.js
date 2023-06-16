@@ -1,35 +1,36 @@
 let idSeleccionadoParaEliminar=0;
 let idSeleccionadoParaActualizar=0;
 
-function crearCategoria(){
-   const descripcionCategoria= document.getElementById ('descripcionCateAlta').value
-    $.ajax({
-        method:'POST', //Metodo
-        url: window.location.origin+"/categorias",
-        data: { //Body
-            descripcion:descripcionCategoria
-         },
-        success: function( result ) {
-            if (result.estado==1){
-                let categoria = result.categoria;
-                //Debemos agregar la categoria la tabla
-                let tabla = $('#tabla-categorias').DataTable();
-                let Botones = generarBotones(categoria.id);
-                let nuevoRenglon = tabla.row.add([categoria.descripcion,Botones]).node()
-                //-----------linea Agregada para el ID del renglon-----------
-                $(nuevoRenglon).attr('id','renglon_'+categoria.id)
-                //----------------------------------------------------
-                $(nuevoRenglon).find('td').addClass('table-td');
-                tabla.draw(false);
+function crearCategoria() {
+  const idcategoria = document.getElementById('idCategoriaAlta').value;
+  const descripcionCategoria = document.getElementById('descripcionCateAlta').value;
 
-                //Mostrar un mensaje agradable al usuario
-              //  alert( result.mensaje)
-            }else{
-                alert(result.mensaje)
-            }
-    
-        }
-      });
+  $.ajax({
+    method: 'POST', // Método
+    url: window.location.origin + "/api/categorias",
+    data: { // Body
+      id: idcategoria,
+      descripcion: descripcionCategoria
+    },
+    success: function(result) {
+      if (result.estado == 1) {
+        let categoria = result.categoria;
+        // Debemos agregar la categoría a la tabla
+        let tabla = $('#tabla-categorias').DataTable();
+        let Botones = generarBotones(categoria.id);
+        let nuevoRenglon = tabla.row.add([categoria.id, categoria.descripcion, Botones]).node();
+        // Agregar el ID del renglón
+        $(nuevoRenglon).attr('id', 'renglon_' + categoria.id);
+        $(nuevoRenglon).find('td').addClass('table-td');
+        tabla.draw(false);
+
+        // Mostrar un mensaje agradable al usuario
+        // alert(result.mensaje);
+      } else {
+        alert(result.mensaje);
+      }
+    }
+  });
 }
 
 function getCategorias(){
@@ -43,7 +44,7 @@ function getCategorias(){
             let tabla = $('#tabla-categorias').DataTable();
             categorias.forEach(categoria => {
               let Botones = generarBotones(categoria.id);
-              let nuevoRenglon = tabla.row.add([categoria.id, categoria.Descripcion, Botones]).node()
+              let nuevoRenglon = tabla.row.add([categoria.id, categoria.descripcion, Botones]).node()
               //-----------linea Agregada para el ID del renglon-----------
               $(nuevoRenglon).attr('id','renglon_'+categoria.id)
               //------------------------------------------------------------
@@ -98,6 +99,7 @@ function identificaActualizar(id){
       if(result.estado==1){
         let categoria = result.categoria;
         //Mostramos en la ventana 
+        document.getElementById('idCategoriaModificar').value=categoria.id;
         document.getElementById('descripcionCategoriaActualizar').value=categoria.descripcion;
       }else{
         alert(result.mensaje)
@@ -108,39 +110,35 @@ function identificaActualizar(id){
 
 function identificaEliminar(id){
   idSeleccionadoParaEliminar=id;
-  //debemos de guardar este id de manera global
-  //alert(idSeleccionadoParaEliminar);
+
 
 }
 
-function actualizarCategoria(){
+function actualizarCategoria() {
+  let idcategoria = document.getElementById('idCategoriaModificar').value;
   let descripcionCategoria = document.getElementById('descripcionCategoriaActualizar').value;
+
   $.ajax({
     method: "PUT",
-    url: window.location.origin +"/api/categorias/"+idSeleccionadoParaActualizar, //params
-    data: {//body
-      descripcion:descripcionCategoria
-    }, 
-    success: function( result ) {
-      if (result.estado==1){
-        // Debemos de actualizar la tabla
-        let tabla =$('#tabla-categorias').DataTable();
-        let rengloTemporal = tabla.row('#renglon_'+idSeleccionadoParaActualizar).data();
-        rengloTemporal[0]= descripcionCategoria;
-        //Paso 3
-        tabla.row('#renglon_'+idSeleccionadoParaActualizar).data(rengloTemporal).draw()
+    url: window.location.origin + "/api/categorias/" + idSeleccionadoParaActualizar, // Parámetros
+    data: { // Cuerpo
+      id: idcategoria,
+      descripcion: descripcionCategoria
+    },
+    success: function(result) {
+      if (result.estado == 1) {
+        // Debemos actualizar la tabla
+        let tabla = $('#tabla-categorias').DataTable();
+        let rengloTemporal = tabla.row('#renglon_' + idSeleccionadoParaActualizar).data();
+        rengloTemporal[0] = idcategoria;
+        rengloTemporal[1] = descripcionCategoria;
+        tabla.row('#renglon_' + idSeleccionadoParaActualizar).data(rengloTemporal).draw();
         alert(result.mensaje);
-      }else{
+      } else {
         alert(result.mensaje);
       }
     }
   });
 }
 
-//ña mandamos llamas sin condicion
 getCategorias();
-//una funcion para ver solo una categoria
-//dos funciones para actualizar una categorias
-//dos funciones para elminar una categorias
-//una funcion para crear una categorias
-//una funcion que nos regrese el URL independiente: local o de railway.com o render

@@ -65,38 +65,6 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>categoria 1</td>
-                      
-                      <td> 
-                          <div style="display: flex; justify-content: center;">
-                            <button type="button" class="btn  btn-outline-primary" style="display: inline-block;" data-toggle="modal" data-target="#modal-modificar">
-                              <i class="fas fa-edit"></i>
-                            </button>
-                            <button type="button" class="btn btn-outline-danger" style="display: inline-block;" data-toggle="modal" data-target="#modal-eliminar">
-                              <i class="fas fa-edit"></i>
-                            </button>
-                          </div>
-                      </td>
-                    
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Categoria 2</td>
-                      
-                      <td> 
-                          <div style="display: flex; justify-content: center;">
-                            <button type="button" class="btn  btn-outline-primary" style="display: inline-block;" data-toggle="modal" data-target="#modal-modificar">
-                              <i class="fas fa-edit"></i>
-                            </button>
-                            <button type="button" class="btn btn-outline-danger" style="display: inline-block;" data-toggle="modal" data-target="#modal-eliminar">
-                              <i class="fas fa-edit"></i>
-                            </button>
-                          </div>
-                      </td>
-                     
-                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -131,11 +99,13 @@
               </button>
             </div>
             <div class="modal-body">
-              <div class="p-6 space-y-4">
+                  <div>
+                    <label for"id" class="form-label">ID :</label>
+                    <input type="text" id="idCategoriaAlta" placeholder="Ingrese ID de categoría">
+                  </div>
                   <div class="input-area">
                     <label for="description" class="form-label">Descripción :</label>
                     <textarea id="descripcionCateAlta" rows="5" class="form-control" placeholder="Digite la descripción de la categoría"></textarea>
-                  </div>
                 </div>
             </div>
             <div class="modal-footer justify-content-between">
@@ -183,9 +153,13 @@
             </div>
             <div class="modal-body">
               <div class="p-6 space-y-4">
+                <div class="form-group">
+                        <label>ID :</label>
+                        <input type="text" id="idCategoriaModificar" type="text" class="form-control"disabled="">
+                      </div>
                   <div class="input-area">
                     <label for="description" class="form-label">Descripción :</label>
-                    <textarea id="modificarClavenCategoria" rows="5" class="form-control"></textarea>
+                    <textarea id="descripcionCategoriaActualizar" rows="5" class="form-control"></textarea>
                   </div>
                 </div>
             </div>

@@ -77,9 +77,9 @@ categoriasAPI.deleteCategoriaPorId = async(req=request,res,next)=>{
 
 categoriasAPI.postCategoria = async(req=request,res,next)=>{
     try {
-        const{descripcion}=req.body;
+        const{id,descripcion}=req.body;
         //validar que en el cuerpo de la solicitud exista descripcion y observaciones 
-        if(descripcion == undefined){
+        if(id==undefined || descripcion == undefined){
             //bad request (Solicitud incorrecta)
             res.status(400).json({
                 estado:0,
@@ -87,13 +87,13 @@ categoriasAPI.postCategoria = async(req=request,res,next)=>{
             })
         } else{
             const conexion = await miConexion();
-            const resultado = await conexion.query('INSERT INTO categorias(descripcion) VALUES(?)',[descripcion])
+            const resultado = await conexion.query('INSERT INTO categorias(id,descripcion) VALUES(?,?)',[id,descripcion])
            if(resultado[0].affectedRows>0){
             res.status(201).json({
                 estado:1,
                 mensaje:"Categoria creada",
                categoria:{
-                id             :    resultado[0].insertId,
+                id             :    id,
                 descripcion    :    descripcion
                }
             })
@@ -113,13 +113,13 @@ categoriasAPI.putCategoriaPorId =async(req,res,next)=>{
     try {
         const {id} = req.params;
         const {descripcion}= req.body;
-        if(descripcion == undefined){
+        if(id == undefined || descripcion == undefined){
             res.status(400).json({
                 estado:0,
                 mensaje:"Solicitud incorrecta. Faltan parametros"
             })
         }else{
-            const conexion= await miConexion();
+            const conexion= miConexion();
             const  resultado = await conexion.query('UPDATE categorias SET descripcion = ? WHERE id=?', [descripcion,id]);
             if(resultado[0].affectedRows>0){
                 if(resultado[0].changedRows>0){
@@ -127,7 +127,6 @@ categoriasAPI.putCategoriaPorId =async(req,res,next)=>{
                         estado:1,
                         mensaje:"Categoria Actualizada",
                         categoria:{
-                            id:id,
                             descripcion:descripcion
                         }
                     })
