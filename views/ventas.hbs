@@ -56,60 +56,19 @@
                 </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="tabla-ventas">
                   <thead>
                     <tr>
                       <th >ID</th>
-                      <th>No. Factura</th>
-                      <th>Producto</th>
-                      <th >Categoría</th>
-                      <th >Cantidad</th>
+                      <th>Cantidad</th>
+                      <th>Factura_ID</th>
+                      <th >Producto_ID</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Nombre 1</td>
-                      <td> XXXX - XXXX - XX </td> 
-                      <td> Categoría 1</td>
-                      <td>1</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Nombre 2</td>
-                      <td> XXXX - XXXX - XX </td>
-                       <td> Categoría 3</td>
-                      <td>1</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Nombre 3</td>
-                     <td> XXXX - XXXX - XX </td>
-                       <td> Categoría 2</td>
-                      <td>1</td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>Nombre 4</td>
-                      <td> XXXX - XXXX - XX </td>
-                       <td> Categoría 6</td>
-                      <td>1</td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
-              <!-- /.card-body -->
-              <div class="card-footer clearfix">
-                <ul class="pagination pagination-sm m-0 float-right">
-                  <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                </ul>
-              </div>
-            </div>
-            <!-- /.card -->
           </div>
 
       </div><!-- /.container-fluid -->
@@ -129,28 +88,22 @@
               </button>
             </div>
             <div class="modal-body">
-              <div class="form-group">
-                        <label>Factura :</label>
-                        <select class="form-control">
-                          <option>Factura 1</option>
-                          <option>Factura 2</option>
-                        </select>
-                </div>
-                <div class="form-group">
-                        <label>Producto :</label>
-                        <select class="form-control">
-                          <option>Producto 1</option>
-                          <option>Producto 2</option>
-                        </select>
-                </div>
-                <div class="input-area">
-                    <label for="description" class="form-label">Cantidad :</label>
-                    <textarea id="Cantidadventa" class="form-control" ></textarea>
-                  </div>
+              <div class="input-area">
+                    <label for="cantidad" class="form-label">Cantidad :</label>
+                    <input id="cantidadVentaAlta" type="text" class="form-control" placeholder="Ingrese la cantidad">
+              </div>
+              <div class="input-area">
+                    <label for="name" class="form-label">Factura_ID :</label>
+                    <input id="facturaVentaAlta" type="text" class="form-control" placeholder="Ingrese el ID de Facturar">
+              </div>
+              <div class="input-area">
+                    <label for="name" class="form-label">Producto_ID :</label>
+                    <input id="productoVentaAlta" type="text" class="form-control" placeholder="Ingrese el ID de Producto">
+              </div>
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-success">Agregar</button>
+              <button type="button" class="btn btn-success" data-dismiss="modal" onclick="crearVenta();">Agregar</button>
             </div>
           </div>
           <!-- /.modal-content -->
@@ -218,5 +171,7 @@
 <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- scips propios -->
+  <script src="assets/js-propios/ventas-front.js"></script>
 </body>
 </html>

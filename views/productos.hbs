@@ -56,67 +56,21 @@
 </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="tabla-productos">
                   <thead>
                     <tr>
                       <th >ID</th>
-                      <th>Nombre</th>
+                      <th>Descripcion</th>
+                      <th>Proveedor_ID</th>
+                      <th >Categoría_ID</th>
                       <th>Precio</th>
-                      <th >Categoría</th>
-                      <th>Proveedor</th>
                       <th >Acciones</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Nombre 1</td>
-                      <td> XXXX - XXXX - XX </td> 
-                       <td>1</td>
-                      <th>Proveedor 1</th>
-                      <td> 
-                          <div style="display: flex; justify-content: center;">
-                            <button type="button" class="btn  btn-outline-primary" style="display: inline-block;" data-toggle="modal" data-target="#modal-modificar-producto">
-                              <i class="fas fa-edit"></i>
-                            </button>
-                            <button type="button" class="btn btn-outline-danger" style="display: inline-block;"  data-toggle="modal" data-target="#modal-eliminar-producto">
-                              <i class="fas fa-edit"></i>
-                            </button>
-                          </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Nombre 2</td>
-                      <td> XXXX - XXXX - XX </td>
-                       <td>1</td>
-                      <th>Proveedor 2</th>
-                      <td> 
-                          <div style="display: flex; justify-content: center;">
-                            <button type="button" class="btn  btn-outline-primary" style="display: inline-block;" data-toggle="modal" data-target="#modal-modificar-producto">
-                              <i class="fas fa-edit"></i>
-                            </button>
-                            <button type="button" class="btn btn-outline-danger" style="display: inline-block;"  data-toggle="modal" data-target="#modal-eliminar-producto">
-                              <i class="fas fa-edit"></i>
-                            </button>
-                          </div>
-                      </td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
-              <!-- /.card-body -->
-              <div class="card-footer clearfix">
-                <ul class="pagination pagination-sm m-0 float-right">
-                  <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                </ul>
-              </div>
-            </div>
-            <!-- /.card -->
           </div>
 
       </div><!-- /.container-fluid -->
@@ -138,30 +92,25 @@
             <div class="modal-body">
               <div class="p-6 space-y-4">
                   <div class="input-area">
-                    <label for="name" class="form-label">Nombre :</label>
-                    <input id="NombreProducAlta" type="text" class="form-control" placeholder="Digite el nombre del producto">
-                  </div>
-                  <div class="input-area">
                     <label for="description" class="form-label">Descripción :</label>
                     <textarea id="DescripcionProductoAlta" rows="5" class="form-control" placeholder="Descripción del producto"></textarea>
                   </div>
                 </div>
-                 <div class="form-row">
-                  <div class="form-group col">
-                        <label>Categoría :</label>
-                        <select class="form-control">
-                          <option>Categoría 1</option>
-                          <option>Categoría 2</option>
-                        </select>
-                      </div>
-                      <div class="form-group col">
-                        <label>Proveedor :</label>
-                        <select class="form-control">
-                          <option>Proveedor 1</option>
-                          <option>Proveedor 2</option>
-                        </select>
+                <div class="row">
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Proveedor_ID</label>
+                        <input type="text" class="form-control" placeholder="Ingrese ID proveedor" id="ProveedorIDProdAlta">
                       </div>
                     </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Categoría_ID</label>
+                        <input type="text" class="form-control" placeholder="Ingrese ID categoría" id="CategoriaIDProdAlta">
+                      </div>
+                    </div>
+                  </div>
                     <div class="form-group">
                       <div>
                         <label>Precio :</label>
@@ -170,13 +119,13 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text">$</span>
                         </div>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="PrecioProdAlta">
                       </div>
                     </div>
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+              <button type="button" class="btn btn-success" data-dismiss="modal" onclick="crearProducto();">Aceptar</button>
             </div>
           </div>
           <!-- /.modal-content -->
@@ -199,7 +148,7 @@
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Eliminar</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="borrarProducto();">Eliminar</button>
             </div>
           </div>
           <!-- /.modal-content -->
@@ -219,32 +168,27 @@
               </button>
             </div>
             <div class="modal-body">
-              <div class="p-6 space-y-4">
-                  <div class="input-area">
-                    <label for="name" class="form-label">Nombre :</label>
-                    <input id="NombreProducModificar" type="text" class="form-control">
-                  </div>
+             <div class="p-6 space-y-4">
                   <div class="input-area">
                     <label for="description" class="form-label">Descripción :</label>
-                    <textarea id="DescripcionProductoModificar" rows="5" class="form-control"></textarea>
+                    <textarea id="DescripcionProductoModi" rows="5" class="form-control" placeholder="Descripción del producto"></textarea>
                   </div>
                 </div>
-                 <div class="form-row">
-                  <div class="form-group col">
-                        <label>Categoría :</label>
-                        <select class="form-control">
-                          <option>Categoría 1</option>
-                          <option>Categoría 2</option>
-                        </select>
-                      </div>
-                      <div class="form-group col">
-                        <label>Proveedor :</label>
-                        <select class="form-control">
-                          <option>Proveedor 1</option>
-                          <option>Proveedor 2</option>
-                        </select>
+                <div class="row">
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Proveedor_ID</label>
+                        <input type="text" class="form-control" placeholder="Ingrese ID proveedor" id="ProveedorIDProdModi">
                       </div>
                     </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Categoría_ID</label>
+                        <input type="text" class="form-control" placeholder="Ingrese ID categoría" id="CategoriaIDProdModi">
+                      </div>
+                    </div>
+                  </div>
                     <div class="form-group">
                       <div>
                         <label>Precio :</label>
@@ -253,13 +197,13 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text">$</span>
                         </div>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="PrecioProdModi">
                       </div>
                     </div>
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="actualizarProducto();">Guardar</button>
             </div>
           </div>
           <!-- /.modal-content -->
@@ -314,6 +258,8 @@
 <script src="dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
+<!-- scips propios -->
+<script src="assets/js-propios/productos-front.js"></script>
 <!-- Datatable library and plugins -->
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>

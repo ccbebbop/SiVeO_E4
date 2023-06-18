@@ -8,7 +8,9 @@ const app = express();
 const rutaCategorias = require('./src/routes/categorias-routes-api');
 const rutaClientes =require('./src/routes/clientes-routes-api');
 const rutaFacturas = require('./src/routes/facturas-routes-api');
+const rutaProductos = require('./src/routes/productos-routes-api');
 const rutaProveedores = require('./src/routes/proveedores-routes-api');
+const rutaVentas = require('./src/routes/ventas-routes-api');
 
 app.set('view engine', 'hbs');
 hbs. registerPartials(__dirname + '/views/partials',()=>{});
@@ -22,7 +24,9 @@ app.use(cors());
 app.use(rutaCategorias);
 app.use(rutaClientes);
 app.use(rutaFacturas);
+app.use(rutaProductos);
 app.use(rutaProveedores);
+app.use(rutaVentas);
 
 app.get('/',(req,res)=>{
     res.render('login');
