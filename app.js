@@ -7,6 +7,7 @@ const app = express();
 
 const rutaCategorias = require('./src/routes/categorias-routes-api');
 const rutaClientes =require('./src/routes/clientes-routes-api');
+const rutaFacturas = require('./src/routes/facturas-routes-api');
 const rutaProveedores = require('./src/routes/proveedores-routes-api');
 
 app.set('view engine', 'hbs');
@@ -20,6 +21,7 @@ app.use(cors());
 
 app.use(rutaCategorias);
 app.use(rutaClientes);
+app.use(rutaFacturas);
 app.use(rutaProveedores);
 
 app.get('/',(req,res)=>{
