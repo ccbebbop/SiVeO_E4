@@ -82,7 +82,7 @@ function generarBotones(id){
     Botones+= '<i class="fas fa-edit"></i>'
     Botones+= '</button>'
     Botones+= '<button type="button" class="btn btn-outline-danger" style="display: inline-block;" data-toggle="modal" onclick="identificaEliminar('+id+');" data-target="#modal-eliminar">'
-    Botones+=  '<i class="fas fa-edit"></i>'
+    Botones+=  '<i class="fas fa-trash"></i>'
     Botones+='</button>'
     Botones+= '</div>'
     return Botones;

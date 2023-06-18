@@ -56,62 +56,22 @@
                 </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="tabla-clientes">
                   <thead>
                     <tr>
                       <th >ID</th>
                       <th>Nombre</th>
-                      <th>Dirección</th>
                       <th>Telefono</th>
+                      <th>Dirección</th>
                       <th >Acciones</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Nombre 1</td>
-                       <td>Dirección 1</td>
-                      <td> XXXX - XXXX - XX </td> 
-                      <td> 
-                          <div style="display: flex; justify-content: center;">
-                            <button type="button" class="btn  btn-outline-primary" style="display: inline-block;" data-toggle="modal" data-target="#modal-Modificar-Cliente">
-                              <i class="fas fa-edit"></i>
-                            </button>
-                            <button type="button" class="btn btn-outline-danger" style="display: inline-block;" data-toggle="modal" data-target="#modal-eliminar-cliente">
-                              <i class="fas fa-edit"></i>
-                            </button>
-                          </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Nombre 2</td>
-                       <td>Dirección 2</td>
-                      <td> XXXX - XXXX - XX </td>
-                      <td> 
-                          <div style="display: flex; justify-content: center;">
-                            <button type="button" class="btn  btn-outline-primary" style="display: inline-block;" data-toggle="modal" data-target="#modal-Modificar-Cliente">
-                              <i class="fas fa-edit"></i>
-                            </button>
-                            <button type="button" class="btn btn-outline-danger" style="display: inline-block;" data-toggle="modal" data-target="#modal-eliminar-cliente">
-                              <i class="fas fa-edit"></i>
-                            </button>
-                          </div>
-                      </td>
-                    </tr>
-                                      </tbody>
+                    
+                 </tbody>
                 </table>
               </div>
               <!-- /.card-body -->
-              <div class="card-footer clearfix">
-                <ul class="pagination pagination-sm m-0 float-right">
-                  <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                </ul>
-              </div>
             </div>
             <!-- /.card -->
           </div>
@@ -135,26 +95,26 @@
               <div class="p-6 space-y-4">
                   <div class="input-area">
                     <label for="name" class="form-label">Nombre Completo :</label>
-                    <input id="claveCateAlta" type="text" class="form-control" placeholder="Digite el nombre completo del cliente">
+                    <input id="NombreClienteAlta" type="text" class="form-control" placeholder="Digite el nombre completo del cliente">
                   </div>
                   <div class="form-group">
-                    <label>Contacto :</label>
+                    <label>Telefono :</label>
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                       </div>
-                      <input type="text" class="form-control" inputmode="text" placeholder="xx-xxx-xxx-xxxx">
+                      <input id="telefonoClienteAlta" type="text" class="form-control" inputmode="text" placeholder="xx-xxx-xxx-xxxx">
                     </div>
                   </div>
                   <div class="input-area">
-                    <label for="description" class="form-label">Dirección :</label>
-                    <textarea id="descripcionCateAlta" rows="5" class="form-control" placeholder="Digite la dirección"></textarea>
+                    <label for="direccion" class="form-label">Dirección :</label>
+                    <textarea id="direccionClienteAlta" rows="5" class="form-control" placeholder="Digite la dirección"></textarea>
                   </div>
                 </div>
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+              <button type="button" class="btn btn-success" data-dismiss="modal" onclick="crearCliente();">Aceptar</button>
             </div>
           </div>
           <!-- /.modal-content -->
@@ -177,7 +137,7 @@
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Eliminar</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="borrarCliente();">Eliminar</button>
             </div>
           </div>
           <!-- /.modal-content -->
@@ -199,26 +159,26 @@
               <div class="p-6 space-y-4">
                   <div class="input-area">
                     <label for="name" class="form-label">Nombre Completo :</label>
-                    <input id="claveCateAlta" type="text" class="form-control" >
+                    <input id="NombreClienteModi" type="text" class="form-control" >
                   </div>
                   <div class="form-group">
-                    <label>Contacto :</label>
+                    <label>Telefono :</label>
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                       </div>
-                      <input type="text" class="form-control" inputmode="text" >
+                      <input id="telefonoClienteModi" type="text" class="form-control" inputmode="text" >
                     </div>
                   </div>
                   <div class="input-area">
                     <label for="description" class="form-label">Dirección :</label>
-                    <textarea id="descripcionCateAlta" rows="5" class="form-control"></textarea>
+                    <textarea id="direccionClienteModi" rows="5" class="form-control"></textarea>
                   </div>
                 </div>
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="actualizarCliente();">Guardar</button>
             </div>
           </div>
           <!-- /.modal-content -->
@@ -273,6 +233,8 @@
 <script src="dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
+<!-- scips propios -->
+  <script src="assets/js-propios/clientes-front.js"></script>
 <!-- Datatable library and plugins -->
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>

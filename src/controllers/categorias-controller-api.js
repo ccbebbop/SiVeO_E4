@@ -52,28 +52,33 @@ categoriasAPI.getCategoriaPorId = async (req=request,res,next)=>{
 };
 //Exportar el objeto
 
-categoriasAPI.deleteCategoriaPorId = async(req=request,res,next)=>{
+categoriasAPI.deleteCategoriaPorId = async (req = request, res, next) => {
     try {
-        const{id}= req.params;
-        const conexion = await miConexion();
-        const resultado =await conexion.query('DELETE FROM categorias WHERE id =?', [id]);
-        if(resultado[0].affectedRows>0){
-            res.status(200).json({
-                estado:1,
-                mensaje:"Categoria eliminada",
-                
-            })
-        }else{
-            res.status(404).json({
-                estado:0,
-                mensaje:"Categoria NO encontrada"
-            })
-        }
-        res.json(resultado);
+      const { id } = req.params;
+      const conexion = await miConexion();
+      
+      // Eliminar los registros asociados en la tabla "productos"
+      await conexion.query('DELETE FROM productos WHERE categoria_id = ?', [id]);
+      
+      // Eliminar la categoría de la tabla "categorias"
+      const resultado = await conexion.query('DELETE FROM categorias WHERE id = ?', [id]);
+      
+      if (resultado[0].affectedRows > 0) {
+        res.status(200).json({
+          estado: 1,
+          mensaje: "Categoría eliminada",
+        });
+      } else {
+        res.status(404).json({
+          estado: 0,
+          mensaje: "Categoría no encontrada",
+        });
+      }
     } catch (error) {
-        next(error)
+      next(error);
     }
-}
+  };
+  
 
 categoriasAPI.postCategoria = async(req=request,res,next)=>{
     try {
